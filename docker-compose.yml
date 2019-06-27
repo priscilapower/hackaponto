@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  web:
+    container_name: web
+    build:
+      context: web
+    ports:
+      - "8089:80"
+    volumes:
+      - ./web:/var/www/html
+      - /var/log/apache2:/var/log/apache2
+    networks:
+      - apinetwork
+    restart: always
+
+  api-php:
+    container_name: api-php
+    build:
+      context: api-php
+    ports:
+      - "8090:80"
+    volumes:
+      - ./api-php:/var/www/html
+      - /var/log/apache2:/var/log/apache2
+    networks:
+      - apinetwork
+    restart: always
+
+  mysql:
+    container_name: mysql
+    build:
+      context: mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - apinetwork
+    restart: always
+
+  facenode:
+    container_name: facenode
+    build:
+      context: face-node
+    ports:
+     - "3000:3000"
+    networks:
+     - apinetwork
+    volumes:
+     - .:/api
+     - /api/node_modules
+
+networks:
+  apinetwork:
+    driver: bridge
