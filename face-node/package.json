@@ -22,7 +22,7 @@
   "dependencies": {
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
-    "@nestjs/platform-express": "^6.0.0",
+    "@nestjs/platform-express": "^9.2.1",
     "@nestjs/swagger": "^3.0.2",
     "@tensorflow/tfjs-node": "^1.2.1",
     "base64-img": "^1.0.4",
